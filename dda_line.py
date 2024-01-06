@@ -31,7 +31,7 @@ def DDA(x0, y0, x1, y1):
 
 def main():
     x0, y0 = 20, 20
-    x1, y1 = 60, 50
+    x1, y1 = 20, 60
 
     DDA(x0, y0, x1, y1)
 

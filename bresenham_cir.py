@@ -18,11 +18,20 @@ def draw_circle(radius):
             y -= 1
             p = p + 2 * (x - y) + 1
 
-    plot_other_octants(x_points, y_points)
+    # Reflect and add points to complete the circle
+    all_points = list(zip(x_points, y_points))
+    all_points.extend([(y, x) for x, y in all_points])
+    all_points.extend([(-x, y) for x, y in all_points])
+    all_points.extend([(-y, x) for x, y in all_points])
+    all_points.extend([(x, -y) for x, y in all_points])
+    all_points.extend([(y, -x) for x, y in all_points])
+    all_points.extend([(-x, -y) for x, y in all_points])
+    all_points.extend([(-y, -x) for x, y in all_points])
+
+    x_points, y_points = zip(*all_points)
 
     plt.scatter(x_points, y_points, marker='o')
     plt.gca().set_aspect('equal', adjustable='box')
-    plt.title('Bresenham\'s Midpoint Circle Algorithm')
     plt.show()
 
 
@@ -31,17 +40,8 @@ def plot_octant_points(x, y, x_points, y_points):
     y_points.append(y)
 
 
-def plot_other_octants(x_points, y_points):
-    all_points = list(zip(x_points, y_points))
-    all_points.extend([(y, x) for x, y in all_points])
-    all_points.extend([(-x, y) for x, y in all_points])
-    all_points.extend([(y, -x) for x, y in all_points])
-
-    x_points, y_points = zip(*all_points)
-
-
 def main():
-    radius = 50
+    radius = 25
     draw_circle(radius)
 
 
